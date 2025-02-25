@@ -3,11 +3,23 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>java2ts-processor</artifactId>
     <name>java2ts-processor::processor</name>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>21</source>
+                    <target>21</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <parent>
 	    <groupId>org.bsc.processor</groupId>
 	    <artifactId>java2ts-processor-parent</artifactId>
-	    <version>2.0-20241009</version>
+	    <version>2.0-20250225</version>
     </parent>
 
 

@@ -39,7 +39,7 @@ import static org.bsc.java2typescript.Java2TSConverter.PREDEFINED_TYPES;
  * </ul>
  */
 //@SupportedSourceVersion(SourceVersion.RELEASE_8)
-@SupportedSourceVersion(SourceVersion.RELEASE_17)
+@SupportedSourceVersion(SourceVersion.RELEASE_21)
 @SupportedAnnotationTypes("org.bsc.processor.annotation.*")
 @SupportedOptions({"ts.outfile", "ts.outdir", "compatibility"})
 @org.kohsuke.MetaInfServices(javax.annotation.processing.Processor.class)
