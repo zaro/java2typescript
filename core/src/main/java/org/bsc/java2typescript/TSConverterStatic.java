@@ -5,16 +5,7 @@ import static java.lang.String.format;
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.Serializable;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.GenericArrayType;
-import java.lang.reflect.Member;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
-import java.lang.reflect.Parameter;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.lang.reflect.TypeVariable;
-import java.lang.reflect.WildcardType;
+import java.lang.reflect.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -486,4 +477,23 @@ public abstract class TSConverterStatic {
       throw new IllegalArgumentException( "type is a  not recognised type!");
   }
 
+    /**
+     *
+     * @param ctx
+     * @return
+     */
+    protected Stream<Field> getPublicFieldsAsStream(TSConverterContext ctx) {
+
+        return ctx.type.getPublicFieldsAsStream();
+    }
+
+    /**
+     *
+     * @param md
+     * @return
+     */
+    protected boolean testFieldNotAllowed(Field md ) {
+        // For now all fields are allowed
+        return true;
+    }
 }

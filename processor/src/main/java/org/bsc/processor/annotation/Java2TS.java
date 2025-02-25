@@ -15,4 +15,9 @@ import java.lang.annotation.Target;
 public @interface Java2TS {
     String name() default "";
     Type[] declare() default {};
+    GlobalConst[] constants() default {};
+    String preTypes() default "";
+    String postTypes() default "";
+    String preScript() default "";
+    String postScript() default "";
 }

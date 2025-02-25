@@ -82,6 +82,11 @@ public class Java2TSConverter extends TSConverterStatic {
                     format("Packages.%s", fqn) :
                     format("Java.type(\"%s\")", fqn);
         }
+        public String javaExtend(String fqn) {
+            return (this == RHINO ) ?
+                    format("Packages.%s", fqn) :
+                    format("Java.extend(Java.type(\"%s\"))", fqn);
+        }
     }
 
     public static class Options {

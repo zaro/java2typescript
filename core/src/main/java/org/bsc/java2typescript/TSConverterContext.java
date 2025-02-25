@@ -1,5 +1,7 @@
 package org.bsc.java2typescript;
 
+import org.bsc.java2typescript.annotation.TsType;
+
 import java.lang.reflect.*;
 import java.util.Arrays;
 import java.util.Map;
@@ -209,6 +211,11 @@ public class TSConverterContext extends TSConverterStatic implements Cloneable, 
 
             final String name = getParameterName(tp);
 
+            TsType tsAnno = tp.getAnnotation(TsType.class);
+            if(tsAnno != null){
+                return String.format("%s:%s", name, tsAnno.value());
+            }
+
             if (tp.isVarArgs()) {
 
                 String typeName = null;
@@ -260,6 +267,26 @@ public class TSConverterContext extends TSConverterStatic implements Cloneable, 
         }
 
         sb.append(getMethodParametersAndReturnDecl(m, true));
+
+        return sb.toString();
+
+    }
+
+    public String getFieldDecl(final Field f, boolean optional, boolean isStatic) {
+
+        final StringBuilder sb = new StringBuilder();
+
+        if(isStatic){
+            sb.append("static ");
+        }
+        sb.append(f.getName());
+        if (optional)
+            sb.append('?');
+
+        final String typeName =  convertJavaToTS( f.getType(), type, declaredTypeMap, false, Optional.empty());
+        sb.append(": ");
+
+        sb.append(typeName);
 
         return sb.toString();
 

@@ -23,6 +23,8 @@ public class TSType extends HashMap<String, Object> {
     private static final String EXPORT = "export";
     private static final String NAMESPACE = "namespace";
     private static final String FUNCTIONAL = "functional";
+    private static final String PRE = "pre";
+    private static final String POST = "post";
 
     protected TSType() {
         super(3);
@@ -113,6 +115,17 @@ public class TSType extends HashMap<String, Object> {
     }
 
     /**
+     * Test is functional interface
+     *
+     * @return
+     */
+    public boolean isAbstract() {
+
+
+        return Modifier.isAbstract(getValue().getModifiers());
+    }
+
+    /**
      * 
      */
     public TSType setFunctional( boolean value ) {
@@ -120,6 +133,40 @@ public class TSType extends HashMap<String, Object> {
         super.put(FUNCTIONAL, value);
         return this;
 
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getPre() {
+        return (String) super.getOrDefault(PRE, "");
+    }
+
+    /**
+     *
+     * @return
+     */
+    public TSType setPre(String value) {
+        super.put(PRE, value);
+        return this;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getPost() {
+        return (String) super.getOrDefault(POST, "");
+    }
+
+    /**
+     *
+     * @return
+     */
+    public TSType setPost(String value) {
+        super.put(POST, value);
+        return this;
     }
 
     
@@ -190,6 +237,18 @@ public class TSType extends HashMap<String, Object> {
 
     /**
      *
+     * @param f
+     * @return
+     */
+    protected boolean testIncludeField( Field f ) {
+        return !f.isSynthetic() && Modifier.isPublic(f.getModifiers())
+                && Character.isJavaIdentifierStart(f.getName().charAt(0))
+                && f.getName().chars().skip(1).allMatch(Character::isJavaIdentifierPart);
+    }
+
+
+    /**
+     *
      * @return
      */
     public Stream<Method> getMethodsAsStream() {
@@ -206,6 +265,18 @@ public class TSType extends HashMap<String, Object> {
      */
     public final Set<Method> getMethods() {
         return getMethodsAsStream().collect(Collectors.toSet());
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Stream<Field> getPublicFieldsAsStream() {
+
+        return Stream.concat(
+                        Stream.of(getValue().getFields()),
+                        Stream.of(getValue().getDeclaredFields()))
+                .filter(this::testIncludeField);
     }
 
     /**

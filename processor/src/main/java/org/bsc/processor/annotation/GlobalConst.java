@@ -12,11 +12,7 @@ import java.lang.annotation.Target;
  */
 @Retention(RetentionPolicy.SOURCE)
 @Target( {ElementType.ANNOTATION_TYPE} )
-public @interface Type {
-	Class<?> value();
-	boolean export()		default false ;
-	String alias()			default "";
-	boolean functional()	default false;
-	String pre() 			default "";
-	String post() 			default "";
+public @interface GlobalConst {
+	String name();
+	Class<?> type();
 }
