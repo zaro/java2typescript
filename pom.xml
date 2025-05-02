@@ -15,16 +15,10 @@
     <url>https://github.com/bsorrentino/java2typescript</url>
     <distributionManagement>
         <repository>
-            <name>central</name>
-            <id>${release.repo.id}</id>
-            <url>${release.repo.url}</url>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/zaro/jdde-bundle</url>
         </repository>
-        <snapshotRepository>
-            <name>snapshot</name>
-            <id>${snapshot.repo.id}</id>
-            <url>${snapshot.repo.url}</url>
-            <!--uniqueVersion>false</uniqueVersion-->
-        </snapshotRepository>
     </distributionManagement>
     <scm>
         <connection>scm:git:https://github.com/bsorrentino/java2typescript.git</connection>
@@ -262,6 +256,7 @@
                     mvn -Prelease source:jar javadoc:jar deploy -Dgpg.passphrase=thephrase
                     ====================================================================================
                     -->
+                    <!--
                     <plugin>
                         <artifactId>maven-gpg-plugin</artifactId>
                         <version>3.2.7</version>
@@ -293,6 +288,7 @@
                             <stagingProfileId/>
                         </configuration>
                     </plugin>
+                    -->
                 </plugins>
             </build>
         </profile>
