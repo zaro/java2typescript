@@ -249,46 +249,6 @@
                             </execution>
                         </executions>
                     </plugin>
-                    <!--
-                    ====================================================================================
-                    # https://github.com/keybase/keybase-issues/issues/2798
-                    export GPG_TTY=$(tty)
-                    mvn -Prelease source:jar javadoc:jar deploy -Dgpg.passphrase=thephrase
-                    ====================================================================================
-                    -->
-                    <!--
-                    <plugin>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <version>3.2.7</version>
-                        <executions>
-                            <execution>
-                                <id>sign-artifacts</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <keyname>bartolomeo.sorrentino@gmail.com</keyname>
-                            <gpgArguments>
-                                <arg>--pinentry-mode</arg>
-                                <arg>loopback</arg>
-                            </gpgArguments>
-                        </configuration>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.sonatype.plugins</groupId>
-                        <artifactId>nexus-staging-maven-plugin</artifactId>
-                        <version>1.7.0</version>
-                        <extensions>true</extensions>
-                        <configuration>
-                            <serverId>sonatype-server</serverId>
-                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                            <stagingProfileId/>
-                        </configuration>
-                    </plugin>
-                    -->
                 </plugins>
             </build>
         </profile>
